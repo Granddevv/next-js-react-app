@@ -1,0 +1,50 @@
+@import "../../styles/variable.scss";
+
+.imageContainer {
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 5px;
+  position: relative;
+  cursor: pointer;
+
+  .image {
+    width: 130px;
+    height: 130px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .maskContainer {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+
+    .backContainer {
+      width: 100%;
+      height: 100%;
+      background-color: $black;
+      opacity: 0.5;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .viewBtnContainer {
+      width: 30px;
+      height: 30px;
+      z-index: 1;
+    }
+  }
+
+  &:hover {
+    .maskContainer {
+      display: flex;
+    }
+  }
+}
