@@ -11,7 +11,6 @@ import {
 import Link from "next/link";
 import { useAppContext } from "../context/state";
 import styles from "./style.module.scss";
-
 const perPage = 10;
 
 export default function Home(props) {
@@ -49,7 +48,7 @@ export default function Home(props) {
   const pageEnd =
     data.images.length > (pageIndex + 1) * perPage
       ? (pageIndex + 1) * perPage
-      : data.images.length - 1;
+      : data.images.length;
 
   return (
     <div className={styles.homeContainer}>
@@ -83,7 +82,7 @@ export default function Home(props) {
 }
 
 export async function getStaticProps(context) {
-  const res = await fetch(`http://localhost:3000/api/photos`);
+  const res = await fetch(`http://localhost:3000/api/photo`);
   const data = await res.json();
 
   if (!data) {
