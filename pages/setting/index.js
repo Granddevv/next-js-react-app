@@ -20,7 +20,11 @@ const Setting = () => {
     } catch (error) {}
   }
 
-  function handleDeleteAll() {}
+  async function handleDeleteAll() {
+    try {
+      await axios.delete(`http://localhost:3000/api/photo`);
+    } catch (error) {}
+  }
 
   return (
     <div className={styles.settingContainer}>

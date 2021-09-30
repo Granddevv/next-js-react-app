@@ -5,6 +5,7 @@ const path = require("path");
 const fs = require("fs");
 const readdirp = promisify(fs.readdir);
 const statp = promisify(fs.stat);
+const unlinkp = promisify(fs.unlink);
 let jsonData = require("./data.json");
 
 const upload = multer({
@@ -38,6 +39,15 @@ apiRoute.get(async (req, res) => {
     fileName: index,
   }));
   res.status(200).json({ data: jsonData });
+});
+
+apiRoute.delete(async (req, res) => {
+  const directory = "./public/uploads";
+  const files = await readdirp(directory);
+  for (let filename of files) {
+    await unlinkp(`${directory}/${filename}`);
+  }
+  res.status(200).json({ data: "success" });
 });
 
 export default apiRoute;
